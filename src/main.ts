@@ -1,4 +1,4 @@
-import { Application, Sprite, InteractionEvent } from 'pixi.js'
+import { Application, Sprite } from 'pixi.js'
 
 const app = new Application() as Application
 const keys = {}
@@ -19,10 +19,31 @@ app.stage.addChild(shipSprite)
 
 app.stage.interactive = true
 
-const moveship = (e: InteractionEvent) => {
-  const pos = e.data.global
-  shipSprite.x = pos.x
-  shipSprite.y = pos.y
+window.onkeydown = (e) => {
+  keys[e.keyCode] = true
 }
 
-app.stage.on("pointermove", moveship)
+window.onkeyup = (e) => {
+  keys[e.keyCode] = false
+}
+
+const gameLoop = () => {
+  if (keys["87"]) {
+    // W key
+    shipSprite.y -= speed
+  }
+  if (keys["83"]) {
+    // S key
+    shipSprite.y += speed
+  }
+  if (keys["65"]) {
+    // A key
+    shipSprite.x -= speed
+  }
+  if (keys["68"]) {
+    // D key
+    shipSprite.x += speed
+  }
+}
+
+app.ticker.add(gameLoop)
