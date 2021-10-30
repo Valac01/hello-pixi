@@ -1,0 +1,16 @@
+{
+  "name": "yt_tut",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild ./src/main.ts --bundle --minify --outfile=./build/main.js",
+    "dev": "esbuild ./src/main.ts --bundle --outfile=./build/main.js --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.13.8",
+    "pixi.js": "^6.1.3"
+  }
+}
